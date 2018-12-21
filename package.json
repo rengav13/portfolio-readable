@@ -1,0 +1,22 @@
+{
+  "name": "readable",
+  "version": "1.0.0",
+  "description": "This is the starter project for the final assessment project for Udacity's Redux course where you will build a content and comment web app. Users will be able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users will also be able to edit and delete posts and comments.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rengav13/portfolio-readable.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rengav13/portfolio-readable/issues"
+  },
+  "homepage": "https://github.com/rengav13/portfolio-readable#readme",
+  "dependencies": {
+    "create-react-app": "^2.1.1"
+  }
+}
