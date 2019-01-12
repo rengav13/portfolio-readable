@@ -14,36 +14,24 @@ const styles = {
   }
 };
 
-class Score extends React.Component {
+const Score = ({ classes, score, onChange }) =>
+  <div className={ classes.score }>
+    <IconButton
+      aria-label='Add Score'
+      onClick={ () => onChange('upVote') }
+    >
+      <MdAdd/>
+    </IconButton>
 
-  addScore = () => this.props.onChange(this.props.score + 1);
+    <AmountValue amount={ score }/>
 
-  subtractScore = () => this.props.onChange(this.props.score - 1);
-
-  render() {
-    const { classes, score } = this.props;
-
-    return (
-      <div className={ classes.score }>
-        <IconButton
-          aria-label='Add Score'
-          onClick={ () => this.addScore(score) }
-        >
-          <MdAdd/>
-        </IconButton>
-
-        <AmountValue amount={ score }/>
-
-        <IconButton
-          aria-label='Subtract Score'
-          onClick={ () => this.subtractScore(score) }
-        >
-          <MdRemove/>
-        </IconButton>
-      </div>
-    );
-  }
-}
+    <IconButton
+      aria-label='Subtract Score'
+      onClick={ () => onChange('downVote') }
+    >
+      <MdRemove/>
+    </IconButton>
+  </div>;
 
 Score.propTypes = {
   classes: PropTypes.object.isRequired,

@@ -1,52 +1,57 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import Divider from '@material-ui/core/Divider';
+
 import MainBar from '../components/MainBar';
 import Posts from "../components/post/Posts";
+import PostsOptions from '../components/post/post-options/PostsOptions';
 import '../App.css';
 
+import { filterPosts, sortPosts } from '../actions/index';
+
+/*
+  TODO:
+    - To add actions to edit and delete posts
+    - To add filters and sort for DefaultPage.
+    - To add FloatButton to add post
+    - To exchange variable score from state to props
+    - To add redux state management to application
+    - To link username to a user's page
+    - To link category to categry view (List posts by category)
+    - To implement comments list for post in post's list (it must be paged, enable comment add, enable vote comment)
+ */
 class DefaultPage extends Component {
 
-  state = {
-    posts: [
-      {
-        id: '8xf0y6ziyjabvozdd253nd',
-        timestamp: 1467166872634,
-        title: 'Udacity is the best place to learn React',
-        body: 'Everyone says so after all.',
-        author: 'thingtwo',
-        category: 'udacity',
-        voteScore: 6,
-        deleted: false,
-        commentCount: 10
-      },
-      {
-        id: '6ni6ok3ym7mf1p33lnez',
-        timestamp: 1468479767190,
-        title: 'Learn Redux in 10 minutes!',
-        body: 'Just kidding. It takes more than 10 minutes to learn technology.',
-        author: 'thingone',
-        category: 'redux',
-        voteScore: -5,
-        deleted: false,
-        commentCount: 0
-      }
-    ]
-  };
+  handleChangeSort = (sort) => this.props.dispatch(sortPosts(sort));
+
+  handleChangeCategory = (category) => this.props.dispatch(filterPosts({ category }));
 
   render() {
-    const { posts } = this.state;
+    const { posts } = this.props;
 
     return (
       <div className="App">
-        <header className='main-bar'>
-          <MainBar/>
-        </header>
-        <div className='content'>
-          <Posts posts={ posts }/>
-        </div>
+        <MainBar/>
 
+        <PostsOptions
+          onChangeCategory={ this.handleChangeCategory }
+          onChangeSort={ this.handleChangeSort }
+        />
+
+        <Divider/>
+
+        <Posts posts={ posts }/>
       </div>
     );
   }
 }
 
-export default DefaultPage;
+const mapStateToProps = ({ posts }) => {
+  let postsArray = [];
+  if (posts)
+    postsArray = Object.keys(posts).map(id => posts[ id ]);
+  return { posts: postsArray };
+};
+
+export default connect(mapStateToProps)(DefaultPage);

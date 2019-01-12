@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
 import { MdMoreVert } from 'react-icons/md';
 
 import PropTypes from 'prop-types';
@@ -17,6 +17,8 @@ import PostInfo from './PostInfo';
 import Comments from "../comments/Comments";
 import CommentsIcon from "../comments/CommentsIcon";
 
+import { votePost } from '../../actions/index';
+
 const styles = {
   card: {
     margin: '5px'
@@ -30,35 +32,23 @@ const styles = {
   }
 };
 
-/*
-  TODO:
-    - To add actions to edit and delete posts
-    - To add filters and sort for DefaultPage.
-    - To add FloatButton to add post
-    - To exchange variable score from state to props
-    - To add redux state management to application
-    - To link username to a user's page
-    - To link category to categry view (List posts by category)
-    - To implement comments list for post in post's list (it must be paged, enable comment add, enable vote comment)
- */
 class Post extends React.Component {
 
   state = {
-    expanded: false,
-    score: 0
+    expanded: false
   };
 
   handleClickCommentsIcon = () => {
     this.setState(state => ({ expanded: !state.expanded }));
   };
 
-  onNewScore = (newScore) => {
-    this.setState({ score: newScore });
+  onNewScore = (option) => {
+    const { post } = this.props;
+    this.props.dispatch(votePost(post.id, option));
   };
 
   render() {
     const { classes, post } = this.props;
-    const { score } = this.state;
 
     return (
       <Card className={ classes.card }>
@@ -86,7 +76,7 @@ class Post extends React.Component {
           disableActionSpacing
         >
           <Score
-            score={ score }
+            score={ post.voteScore }
             onChange={ this.onNewScore }
           />
 
@@ -115,4 +105,4 @@ Post.propTypes = {
   post: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Post);
+export default connect()(withStyles(styles)(Post));

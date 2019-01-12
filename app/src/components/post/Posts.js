@@ -18,6 +18,7 @@ const styles = {
   posts: {
     display: 'flex',
     padding: '5%',
+    paddingTop: '0',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center'
