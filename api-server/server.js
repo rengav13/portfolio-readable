@@ -155,6 +155,7 @@ app.get('/:category/posts', (req, res) => {
 })
 
 app.get('/posts', (req, res) => {
+  console.log('GET Posts');
     posts.getAll(req.token)
       .then(
           (data) => res.send(data),
@@ -210,6 +211,8 @@ app.delete('/posts/:id', (req, res) => {
 app.post('/posts/:id', bodyParser.json(), (req, res) => {
     const { option } = req.body
     const id = req.params.id
+
+  console.log('VOTING');
     posts.vote(req.token, id, option)
       .then(
           (data) => res.send(data),

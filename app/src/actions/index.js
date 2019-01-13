@@ -1,17 +1,39 @@
-export const VOTE_POST = 'VOTE_POST';
-export const FILTER_POSTS = 'FILTER_POSTS';
+import { fetchAll, vote } from '../services/post-service';
+
+export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
+export const VOTE_POST_SUCCESS = 'VOTE_POST_SUCCESS';
+export const FILTER_POSTS_SUCCESS = 'FILTER_POSTS_SUCCESS';
 export const SORT_POSTS = 'SORT_POSTS';
 
-export const votePost = (id, option) =>
-  ({
-    type: VOTE_POST,
-    id,
-    option
-  });
+export const fetchPosts = () => dispatch => {
+  fetchAll()
+    .then(posts => dispatch(fetchPostsSuccess(posts)));
+};
 
-export const filterPosts = (filters) =>
+const fetchPostsSuccess = (posts) => ({
+  type: FETCH_POSTS_SUCCESS,
+  posts
+});
+
+export const votePost = (id, option) => dispatch => {
+  vote(id, option)
+    .then(post => dispatch(votePostSuccess(post)));
+};
+
+const votePostSuccess = (post) => ({
+  type: VOTE_POST_SUCCESS,
+  post
+});
+
+export const filterPosts = (filters) => dispatch => {
+  fetchAll()
+    .then(posts => dispatch(filterPostsSuccess(posts, filters)));
+};
+
+const filterPostsSuccess = (posts, filters) =>
   ({
-    type: FILTER_POSTS,
+    type: FILTER_POSTS_SUCCESS,
+    posts,
     filters
   });
 
