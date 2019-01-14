@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
-import CategoryFilter from "./CategoryFilter";
+import CategorySelect from "../../category/CategorySelect";
 import PostsSortBy from "./PostsSortBy";
 
 const style = {
@@ -34,7 +34,10 @@ const PostsOptions = ({ classes, onChangeSort, onChangeCategory }) =>
   <div className={ classes.root }>
 
     <div className={ classes.options }>
-      <CategoryFilter onChange={ onChangeCategory }/>
+      <CategorySelect
+        onChange={ onChangeCategory }
+        hasAllOption={ true }
+      />
 
       <div className={ classes.verticalDivider }/>
 

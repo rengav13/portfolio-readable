@@ -11,9 +11,10 @@ import { MdAdd } from 'react-icons/md';
 import MainBar from '../components/commom/MainBar';
 import Posts from "../components/post/Posts";
 import PostsOptions from '../components/post/post-options/PostsOptions';
+import NewPost from '../components/post/new/NewPost';
 import '../App.css';
 
-import { filterPosts, sortPosts } from '../actions/index';
+import { addPost, filterPosts, sortPosts } from '../actions/index';
 import { fetchPosts } from "../actions";
 
 const style = (theme) => ({
@@ -26,6 +27,10 @@ const style = (theme) => ({
 
 class DefaultPage extends Component {
 
+  state = {
+    openNewPost: false
+  };
+
   componentDidMount() {
     this.props.dispatch(fetchPosts());
   }
@@ -34,8 +39,18 @@ class DefaultPage extends Component {
 
   handleChangeCategory = (category) => this.props.dispatch(filterPosts({ category }));
 
+  handleOpenNewPost = () => this.setState({ openNewPost: true });
+
+  handleAddPost = (post) => {
+    this.props.dispatch(addPost(post));
+    this.setState({ openNewPost: false });
+  };
+
+  handleCloseAddPost = () => this.setState({ openNewPost: false });
+
   render() {
     const { classes, posts } = this.props;
+    const { openNewPost } = this.state;
 
     return (
       <div className="App">
@@ -54,14 +69,23 @@ class DefaultPage extends Component {
           className={ classes.fab }
           color="primary"
           aria-label="Add post"
+          onClick={ this.handleOpenNewPost }
         >
           <MdAdd/>
         </Fab>
+        <NewPost
+          open={ openNewPost }
+          onSubmit={ this.handleAddPost }
+          onCancel={ this.handleCloseAddPost }
+        />
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ posts }) => ({ posts });
+const mapStateToProps = ({ posts }) => {
+  const filtered = posts ? posts.filter(post => !post.deleted) : [];
+  return { posts: filtered };
+};
 
 export default connect(mapStateToProps)(withStyles(style)(DefaultPage));

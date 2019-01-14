@@ -17,12 +17,8 @@ const style = theme => ({
     width: '100%'
   },
   formControl: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing.unit ,
     width: '90%'
-  },
-  verticalDivider: {
-    borderLeft: '1px solid #e2e2e2',
-    width: '1px'
   }
 });
 
@@ -31,7 +27,7 @@ class SelectOption extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      option: props.defaultValue || '',
+      option: props.defaultValue || 'all',
       labelWidth: 0
     };
   }

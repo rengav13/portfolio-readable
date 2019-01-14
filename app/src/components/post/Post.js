@@ -15,8 +15,9 @@ import PostInfo from './PostInfo';
 import Comments from "../comments/Comments";
 import CommentsIcon from "../comments/CommentsIcon";
 
-import { votePost } from '../../actions/index';
+import { editPost, votePost } from '../../actions/index';
 import PostActions from "./PostActions";
+import { disablePost } from "../../actions";
 
 const styles = {
   card: {
@@ -41,9 +42,18 @@ class Post extends React.Component {
     this.setState(state => ({ expanded: !state.expanded }));
   };
 
-  onNewScore = (option) => {
+  onNewScore = option => {
     const { post } = this.props;
     this.props.dispatch(votePost(post.id, option));
+  };
+
+  onPostUpdated = post => {
+    this.props.dispatch(editPost(post));
+  };
+
+  onPostDeleted = () => {
+    const { post, dispatch } = this.props;
+    dispatch(disablePost(post.id));
   };
 
   render() {
@@ -53,7 +63,11 @@ class Post extends React.Component {
       <Card className={ classes.card }>
         <CardHeader
           action={
-            <PostActions/>
+            <PostActions
+              post={ post }
+              onUpdated={ this.onPostUpdated }
+              onDeleted={ this.onPostDeleted }
+            />
           }
           title={
             <PostCategory category={ post.category }/>

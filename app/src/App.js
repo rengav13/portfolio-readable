@@ -12,6 +12,8 @@ import './App.css';
 
     - To implement message handler (it can be implemented with axios interceptor)
 
+    - To add validation to form views
+
     - To link category to categry view (List posts by category)
     - To add actions to edit and delete posts
     - To add FloatButton to add post

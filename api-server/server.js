@@ -169,6 +169,7 @@ app.get('/posts', (req, res) => {
 })
 
 app.post('/posts', bodyParser.json(), (req, res) => {
+  console.log('ADD NEW POST');
     posts.add(req.token, req.body)
       .then(
           (data) => res.send(data),
@@ -226,6 +227,7 @@ app.post('/posts/:id', bodyParser.json(), (req, res) => {
 })
 
 app.put('/posts/:id', bodyParser.json(), (req, res) => {
+  console.log('EDIT post');
     posts.edit(req.token, req.params.id, req.body)
       .then(
         (data) => res.send(data),

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SelectOption from "../../commom/SelectOption";
+import SelectOption from "../commom/SelectOption";
 
 const CATEGORIES = [
   {
@@ -18,24 +18,25 @@ const CATEGORIES = [
   }
 ];
 
-class CategoryFilter extends React.Component {
+class CategorySelect extends React.Component {
 
   render() {
-    const { onChange } = this.props;
+    const { onChange, hasAllOption } = this.props;
 
     return (
       <SelectOption
         title='Category'
         options={ CATEGORIES }
         onSelect={ onChange }
-        hasAllOption={ true }
+        hasAllOption={ !!hasAllOption }
       />
     );
   }
 }
 
-CategoryFilter.propTypes = {
-  onChange: PropTypes.func.isRequired
+CategorySelect.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  hasAllOption: PropTypes.bool,
 };
 
-export default CategoryFilter;
+export default CategorySelect;

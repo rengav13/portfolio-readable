@@ -68,9 +68,11 @@ function add (token, post) {
   return new Promise((res) => {
     let posts = getData(token)
 
+    post.id = nextKey();
+
     posts[post.id] = {
       id: post.id,
-      timestamp: post.timestamp,
+      timestamp: new Date().getTime(),
       title: post.title,
       body: post.body,
       author: post.author,
@@ -82,6 +84,10 @@ function add (token, post) {
 
     res(posts[post.id])
   })
+}
+
+function nextKey() {
+  return Math.random().toString(20).substr(2, 10).concat(Math.random().toString(20).substr(2, 10));
 }
 
 function vote (token, id, option) {
@@ -113,6 +119,7 @@ function disable (token, id) {
 function edit (token, id, post) {
     return new Promise((res) => {
         let posts = getData(token)
+      console.log(posts[id])
         for (prop in post) {
             posts[id][prop] = post[prop]
         }
