@@ -30,13 +30,15 @@ const style = {
   }
 };
 
-const PostsOptions = ({ classes, onChangeSort, onChangeCategory }) =>
+const PostsOptions = ({ classes, filterDisabled, category, onChangeSort, onChangeCategory }) =>
   <div className={ classes.root }>
 
     <div className={ classes.options }>
       <CategorySelect
         onChange={ onChangeCategory }
         hasAllOption={ true }
+        disabled={ filterDisabled }
+        defaultValue={ category }
       />
 
       <div className={ classes.verticalDivider }/>
@@ -48,6 +50,8 @@ const PostsOptions = ({ classes, onChangeSort, onChangeCategory }) =>
 
 PostsOptions.propTypes = {
   classes: PropTypes.object.isRequired,
+  filterDisabled: PropTypes.bool,
+  category: PropTypes.string,
   onChangeSort: PropTypes.func.isRequired,
   onChangeCategory: PropTypes.func.isRequired
 };

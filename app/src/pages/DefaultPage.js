@@ -28,11 +28,20 @@ const style = (theme) => ({
 class DefaultPage extends Component {
 
   state = {
-    openNewPost: false
+    openNewPost: false,
+    isFiltered: false
   };
 
   componentDidMount() {
-    this.props.dispatch(fetchPosts());
+    const { match } = this.props;
+
+    if (match.params.category) {
+      this.props.dispatch(filterPosts({ category: match.params.category }));
+      this.setState({ isFiltered: true });
+    } else {
+      this.props.dispatch(fetchPosts());
+      this.setState({ isFiltered: false });
+    }
   }
 
   handleChangeSort = (sort) => this.props.dispatch(sortPosts(sort));
@@ -49,14 +58,16 @@ class DefaultPage extends Component {
   handleCloseAddPost = () => this.setState({ openNewPost: false });
 
   render() {
-    const { classes, posts } = this.props;
-    const { openNewPost } = this.state;
+    const { classes, posts, match } = this.props;
+    const { openNewPost, isFiltered } = this.state;
 
     return (
       <div className="App">
         <MainBar/>
 
         <PostsOptions
+          filterDisable={ isFiltered }
+          category={ match.params.category }
           onChangeCategory={ this.handleChangeCategory }
           onChangeSort={ this.handleChangeSort }
         />

@@ -17,7 +17,7 @@ const style = theme => ({
     width: '100%'
   },
   formControl: {
-    margin: theme.spacing.unit ,
+    margin: theme.spacing.unit,
     width: '90%'
   }
 });
@@ -26,8 +26,10 @@ class SelectOption extends React.Component {
 
   constructor(props) {
     super(props);
+    const hasDefault = props.options.filter(({ id }) => id === props.defaultValue).length > 0;
+    const option = hasDefault ? props.defaultValue : 'all';
     this.state = {
-      option: props.defaultValue || 'all',
+      option,
       labelWidth: 0
     };
   }
@@ -50,7 +52,7 @@ class SelectOption extends React.Component {
   };
 
   render() {
-    const { classes, title, options, hasAllOption } = this.props;
+    const { classes, title, options, hasAllOption, disabled } = this.props;
 
     return (
       <form className={ classes.root } autoComplete="off">
@@ -64,6 +66,7 @@ class SelectOption extends React.Component {
           <Select
             value={ this.state.option }
             onChange={ this.handleChange }
+            disabled={ !!disabled }
             input={
               <OutlinedInput
                 labelWidth={ this.state.labelWidth }
@@ -74,10 +77,10 @@ class SelectOption extends React.Component {
           >
             {
               !hasAllOption ? null :
-              (<MenuItem value='all'>
-                  <Typography>All</Typography>
-                </MenuItem>
-              )
+                (<MenuItem value='all'>
+                    <Typography>All</Typography>
+                  </MenuItem>
+                )
             }
 
             {
@@ -103,7 +106,8 @@ SelectOption.propTypes = {
   options: PropTypes.array.isRequired,
   onSelect: PropTypes.func.isRequired,
   hasAllOption: PropTypes.bool,
-  defaultValue: PropTypes.any
+  defaultValue: PropTypes.any,
+  disabled: PropTypes.bool
 };
 
 export default withStyles(style)(SelectOption);

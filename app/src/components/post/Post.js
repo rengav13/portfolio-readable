@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -35,7 +37,8 @@ const styles = {
 class Post extends React.Component {
 
   state = {
-    expanded: false
+    expanded: false,
+    openPost: false
   };
 
   handleClickCommentsIcon = () => {
@@ -79,11 +82,13 @@ class Post extends React.Component {
             />
           }
         />
-        <CardContent>
-          <Typography>
-            { post.title }
-          </Typography>
-        </CardContent>
+        <Link to={ `/${post.category}/${post.id}` }>
+          <CardContent>
+            <Typography>
+              { post.title }
+            </Typography>
+          </CardContent>
+        </Link>
         <CardActions
           className={ classes.actions }
           disableActionSpacing

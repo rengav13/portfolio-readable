@@ -1,34 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import SelectOption from "../commom/SelectOption";
-
-const CATEGORIES = [
-  {
-    id: 'react',
-    label: 'React'
-  },
-  {
-    id: 'redux',
-    label: 'Redux'
-  },
-  {
-    id: 'udacity',
-    label: 'Udacity'
-  }
-];
+import { fetchCategories } from "../../actions/categories";
+import { capitalize } from "../../util/StringUtil";
 
 class CategorySelect extends React.Component {
 
+  componentDidMount() {
+    this.props.dispatch(fetchCategories());
+  }
+
   render() {
-    const { onChange, hasAllOption } = this.props;
+    const { categories, onChange, hasAllOption, disabled, defaultValue } = this.props;
 
     return (
       <SelectOption
         title='Category'
-        options={ CATEGORIES }
+        options={ categories }
         onSelect={ onChange }
         hasAllOption={ !!hasAllOption }
+        disabled={ !!disabled }
+        defaultValue={ defaultValue }
       />
     );
   }
@@ -37,6 +31,16 @@ class CategorySelect extends React.Component {
 CategorySelect.propTypes = {
   onChange: PropTypes.func.isRequired,
   hasAllOption: PropTypes.bool,
+  disabled: PropTypes.bool,
+  defaultValue: PropTypes.any
 };
 
-export default CategorySelect;
+const mapStateToProps = ({ categories }) => {
+  const options = categories.map(category => ({
+    id: category.name,
+    label: capitalize(category.path)
+  }));
+  return { categories: options };
+};
+
+export default connect(mapStateToProps)(CategorySelect);
