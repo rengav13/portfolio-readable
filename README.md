@@ -38,7 +38,7 @@ The next figure shows how the application is structured.
  │   └── index.html
  └── src
      ├── actions # Holds all applications' actions.
-          ├── posts.js
+          ├── ...
      ├── reducers # Holds all applications' reducers.
           ├── ...
      ├── services # Holds all clases that connect with the API by axios.
@@ -62,6 +62,20 @@ The communication with the API is provided by axios, and it's wrapped by the ser
 Those classes are stored in the service folder, so any communication with the API must be done 
 by a service. The `api.js` file contain the axios global configuration, as the base URL and 
 authentication tokens.
+
+## External Libraries
+
+* [Redux: A predictable state container for JavaScript apps.](https://redux.js.org/)
+* [redux-thunk: Thunk middleware for Redux](https://github.com/reduxjs/redux-thunk)
+* [React Icons: Include popular icons in your React projects easly](https://react-icons.netlify.com/#/)
+* [Material UI: React components that implement Google's Material Design.](https://material-ui.com/)
+* [Axios: Promise based HTTP client for the browser and node.js](https://github.com/axios/axios)
+* [Lodash: A modern JavaScript utility library delivering modularity, performance & extras.](https://lodash.com/)
+* [Moment.js: Parse, validate, manipulate, and display dates and times in JavaScript.](https://momentjs.com/)
+
+## References
+
+* [Using Axios with React](https://alligator.io/react/axios-react/)
 
 ## API Server
 
