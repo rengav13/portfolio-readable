@@ -11,7 +11,7 @@ and comments. Users will be able to edit and delete posts and comments.
 The app was developed in react. Besides that, it integrates with other libraries, mainly with redux for state management, 
 axios for API communication, and material UI for front-end design.  
 
-<img src="/public/readable-demo.png" />
+<img src="/readable-demo.gif" />
 
 ## Run Application
 
