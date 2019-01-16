@@ -80,7 +80,7 @@ class Post extends React.Component {
             />
           }
         />
-        <Link to={ `/${post.category}/${post.id}` }>
+        <Link to={ `/${post.category}/${post.id}` } style={{ textDecoration: 'none' }}>
           <CardContent>
             <Typography>
               { post.title }

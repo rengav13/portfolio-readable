@@ -7,7 +7,7 @@ import Timestamp from './Timestamp';
 
 const UserInfo = ({ timestamp, author }) =>
   <Typography variant='overline'>
-    Posted by <a href='/'>{ author }</a>, <Timestamp timestamp={ timestamp }/>.
+    Posted by { author }, <Timestamp timestamp={ timestamp }/>.
   </Typography>;
 
 UserInfo.propTypes = {

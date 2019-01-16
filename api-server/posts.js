@@ -26,7 +26,7 @@ const defaultData = {
     category: 'redux',
     voteScore: -5,
     deleted: false,
-    commentCount: 0
+    commentCount: 1
   }
 }
 

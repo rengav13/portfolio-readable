@@ -34,16 +34,6 @@ const defaultData = {
     voteScore: 6,
     deleted: false,
     parentDeleted: false
-  },
-  "8174bsun80542un48ve89": {
-    id: '8174bsun80542un48ve89',
-    parentId: "6ni6ok3ym7mf1p33lnez",
-    timestamp: 1469479767190,
-    body: 'Comments. Are. Cool.',
-    author: 'thingone',
-    voteScore: -5,
-    deleted: false,
-    parentDeleted: false
   }
 }
 

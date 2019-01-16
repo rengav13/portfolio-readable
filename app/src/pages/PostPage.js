@@ -29,7 +29,7 @@ class PostPage extends React.Component {
 
     return (
       <div>
-        <MainBar/>
+        <MainBar hasBackButton={ true }/>
 
         { !!post && (
           <div>
