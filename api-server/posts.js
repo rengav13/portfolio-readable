@@ -7,7 +7,10 @@ const defaultData = {
     id: '8xf0y6ziyjabvozdd253nd',
     timestamp: 1467166872634,
     title: 'Udacity is the best place to learn React',
-    body: 'Everyone says so after all.',
+    body: `Becoming a Web Developer is getting harder and harder 
+          as each year passes. More and more tools enter the market 
+          and this simply results in you having to learn more and 
+          more things in order to compete in the job market`,
     author: 'thingtwo',
     category: 'react',
     voteScore: 6,

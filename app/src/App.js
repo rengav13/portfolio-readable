@@ -6,16 +6,15 @@ import './App.css';
 
 /*
   TODO:
-    - To implement post detail view
-    - To implement comments list for post in post's list (it must be paged, enable comment add, enable vote comment)
     - To add validation to validate form views
-    - To link category to categry view (List posts by category)
-
-    - To implement category view
-
     - To implement message handler (it can be implemented with axios interceptor)
     - To add a global loading, can be made with axios.interceptors
+
+    - To refactor modals (Edit and Delete, posts and comments)
+    - To refactor Post and Comment Actions
  */
+// TODO: If the post don't exist it must show the 404 Page.
+// { match.params.category }
 const App = () =>
   <div className="app">
     <BrowserRouter>

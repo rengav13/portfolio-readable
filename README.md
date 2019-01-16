@@ -38,7 +38,7 @@ The next figure shows how the application is structured.
  │   └── index.html
  └── src
      ├── actions # Holds all applications' actions.
-          ├── index.js
+          ├── posts.js
      ├── reducers # Holds all applications' reducers.
           ├── ...
      ├── services # Holds all clases that connect with the API by axios.
@@ -51,7 +51,7 @@ The next figure shows how the application is structured.
      ├── pages # Holds all applications' user pages.
           ├── ...
      ├── App.js # This is the root of the app.   
-     └── index.js # It is used for DOM rendering only.
+     └── posts.js # It is used for DOM rendering only.
  ```
 
 The concepts of page and component are distinct. Components are the app's building blocks

@@ -14,8 +14,8 @@ import PostsOptions from '../components/post/post-options/PostsOptions';
 import NewPost from '../components/post/new/NewPost';
 import '../App.css';
 
-import { addPost, filterPosts, sortPosts } from '../actions/index';
-import { fetchPosts } from "../actions";
+import { addPost, filterPosts, sortPosts } from '../actions/posts';
+import { fetchPosts } from "../actions/posts";
 
 const style = (theme) => ({
   fab: {

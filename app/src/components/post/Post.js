@@ -13,15 +13,14 @@ import Typography from '@material-ui/core/Typography';
 
 import Score from '../score/Score';
 import PostCategory from './PostCategory';
-import PostInfo from './PostInfo';
-import Comments from "../comments/Comments";
-import CommentsIcon from "../comments/CommentsIcon";
+import UserInfo from '../commom/UserInfo';
+import CommentCounter from "../comments/CommentCounter";
 
-import { editPost, votePost } from '../../actions/index';
+import { editPost, votePost } from '../../actions/posts';
 import PostActions from "./PostActions";
-import { disablePost } from "../../actions";
+import { disablePost } from "../../actions/posts";
 
-const styles = {
+const styles = theme => ({
   card: {
     margin: '5px'
   },
@@ -31,18 +30,17 @@ const styles = {
   },
   actions: {
     display: 'flex'
+  },
+  commentCounter: {
+    marginLeft: 'auto',
+    marginRight: theme.spacing.unit * 3
   }
-};
+});
 
 class Post extends React.Component {
 
   state = {
-    expanded: false,
     openPost: false
-  };
-
-  handleClickCommentsIcon = () => {
-    this.setState(state => ({ expanded: !state.expanded }));
   };
 
   onNewScore = option => {
@@ -50,11 +48,11 @@ class Post extends React.Component {
     this.props.dispatch(votePost(post.id, option));
   };
 
-  onPostUpdated = post => {
+  onPostUpdate = post => {
     this.props.dispatch(editPost(post));
   };
 
-  onPostDeleted = () => {
+  onPostDelete = () => {
     const { post, dispatch } = this.props;
     dispatch(disablePost(post.id));
   };
@@ -68,15 +66,15 @@ class Post extends React.Component {
           action={
             <PostActions
               post={ post }
-              onUpdated={ this.onPostUpdated }
-              onDeleted={ this.onPostDeleted }
+              onUpdate={ this.onPostUpdate }
+              onDelete={ this.onPostDelete }
             />
           }
           title={
             <PostCategory category={ post.category }/>
           }
           subheader={
-            <PostInfo
+            <UserInfo
               timestamp={ post.timestamp }
               author={ post.author }
             />
@@ -98,15 +96,10 @@ class Post extends React.Component {
             onChange={ this.onNewScore }
           />
 
-          <CommentsIcon
-            count={ post.commentCount }
-            onClick={ this.handleClickCommentsIcon }
-          />
+          <div className={ classes.commentCounter }>
+            <CommentCounter count={ post.commentCount }/>
+          </div>
         </CardActions>
-        <Comments
-          collapse={ this.state.expanded }
-          postId={ post.id }
-        />
       </Card>
     );
   }

@@ -6,3 +6,6 @@ export const capitalize = (str = '') => {
     ? ''
     : str[ 0 ].toUpperCase() + str.slice(1);
 };
+
+export const newKey = () =>
+  Math.random().toString(20).substr(2, 10).concat(Math.random().toString(20).substr(2, 10));

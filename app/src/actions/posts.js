@@ -1,5 +1,6 @@
-import { disable, add, edit, fetchAll, vote } from '../services/post-service';
+import { add, disable, edit, fetchAll, fetchById, vote } from '../services/post';
 
+export const FETCH_POST_SUCCESS = 'FETCH_POST_SUCCESS';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 export const VOTE_POST_SUCCESS = 'VOTE_POST_SUCCESS';
 export const FILTER_POSTS_SUCCESS = 'FILTER_POSTS_SUCCESS';
@@ -7,6 +8,16 @@ export const SORT_POSTS = 'SORT_POSTS';
 export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
 export const EDIT_POST_SUCCESS = 'EDIT_POST_SUCCESS';
 export const DISABLE_POST_SUCCESS = 'DISABLE_POST_SUCCESS';
+
+export const fetchPostById = id => dispatch => {
+  fetchById(id)
+    .then(post => dispatch(fechPostByIdSuccess(post)));
+};
+
+const fechPostByIdSuccess = post => ({
+  type: FETCH_POST_SUCCESS,
+  post
+});
 
 export const fetchPosts = () => dispatch => {
   fetchAll()
@@ -51,7 +62,7 @@ export const addPost = post => dispatch => {
     .then(post => dispatch(addPostSuccess(post)));
 };
 
-export const addPostSuccess = (post) => ({
+const addPostSuccess = (post) => ({
   type: ADD_POST_SUCCESS,
   post
 });
@@ -61,7 +72,7 @@ export const editPost = post => dispatch => {
     .then(post => dispatch(editPostSuccess(post)));
 };
 
-export const editPostSuccess = post => ({
+const editPostSuccess = post => ({
   type: EDIT_POST_SUCCESS,
   post
 });
@@ -71,7 +82,7 @@ export const disablePost = id => dispatch => {
     .then(post => dispatch(disablePostSuccess(post)));
 };
 
-export const disablePostSuccess = post => ({
+const disablePostSuccess = post => ({
   type: DISABLE_POST_SUCCESS,
   post
 });

@@ -3,17 +3,16 @@ import PropTypes from 'prop-types';
 
 import Typography from '@material-ui/core/Typography';
 
-import Timestamp from '../commom/Timestamp';
+import Timestamp from './Timestamp';
 
-// Linkar com a tela de perfil de usuário
-const PostInfo = ({ timestamp, author }) =>
-  <Typography>
+const UserInfo = ({ timestamp, author }) =>
+  <Typography variant='overline'>
     Posted by <a href='/'>{ author }</a>, <Timestamp timestamp={ timestamp }/>.
   </Typography>;
 
-PostInfo.propTypes = {
+UserInfo.propTypes = {
   author: PropTypes.string.isRequired,
   timestamp: PropTypes.number.isRequired
 };
 
-export default PostInfo;
+export default UserInfo;

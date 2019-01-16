@@ -1,4 +1,4 @@
-import { fetchAll } from "../services/category-service";
+import { fetchAll } from "../services/category";
 
 export const FETCH_CATEGORIES_SUCCESS = 'FETCH_CATEGORIES_SUCCESS';
 

@@ -1,5 +1,6 @@
 const clone = require('clone')
 const posts = require('./posts')
+const _ = require('lodash');
 
 let db = {}
 
@@ -23,6 +24,26 @@ const defaultData = {
     voteScore: -5,
     deleted: false,
     parentDeleted: false
+  },
+  "782tuq4ut84ut8v4t8wun89g": {
+    id: '782tuq4ut84ut8v4t8wun89g',
+    parentId: "6ni6ok3ym7mf1p33lnez",
+    timestamp: 1468166872634,
+    body: 'Hi there! I am a COMMENT.',
+    author: 'thingtwo',
+    voteScore: 6,
+    deleted: false,
+    parentDeleted: false
+  },
+  "8174bsun80542un48ve89": {
+    id: '8174bsun80542un48ve89',
+    parentId: "6ni6ok3ym7mf1p33lnez",
+    timestamp: 1469479767190,
+    body: 'Comments. Are. Cool.',
+    author: 'thingone',
+    voteScore: -5,
+    deleted: false,
+    parentDeleted: false
   }
 }
 
@@ -39,7 +60,9 @@ function getByParent (token, parentId) {
     let comments = getData(token)
     let keys = Object.keys(comments)
     filtered_keys = keys.filter(key => comments[key].parentId === parentId && !comments[key].deleted)
-    res(filtered_keys.map(key => comments[key]))
+
+    comments = filtered_keys.map(key => comments[key]);
+    res(_.orderBy(comments, 'timestamp', 'desc'));
   })
 }
 

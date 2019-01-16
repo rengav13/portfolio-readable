@@ -1,5 +1,10 @@
 import API from './api';
 
+export const fetchById = id => {
+  return API.get(`posts/${id}`)
+    .then(res => res.data);
+};
+
 export const fetchAll = () => {
   return API.get('posts')
     .then(res => res.data);

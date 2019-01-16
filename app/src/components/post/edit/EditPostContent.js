@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import DialogContent from '@material-ui/core/DialogContent';
 import TextField from '@material-ui/core/TextField';
-import PostInfo from "../PostInfo";
+import UserInfo from "../../commom/UserInfo";
 
 class EditPostContent extends React.Component {
 
@@ -37,7 +37,7 @@ class EditPostContent extends React.Component {
           onChange={ this.handleChange('body') }
           fullWidth
         />
-        <PostInfo
+        <UserInfo
           author={ post.author }
           timestamp={ post.timestamp }
         />

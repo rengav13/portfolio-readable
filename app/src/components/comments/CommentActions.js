@@ -7,15 +7,15 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import Typography from '@material-ui/core/Typography';
-import EditPost from "./edit/EditPost";
-import DeletePost from "./delete/DeletePost";
+import DeleteComment from "./delete/DeleteComment";
+import EditComment from "./edit/EditComment";
 
-class PostActions extends React.Component {
+class CommentActions extends React.Component {
 
   state = {
     anchorEl: null,
-    openEditPost: false,
-    openDeletePost: false
+    openEditComment: false,
+    openDeleteComment: false
   };
 
   handleOpen = event => this.setState({ anchorEl: event.currentTarget });
@@ -23,19 +23,19 @@ class PostActions extends React.Component {
   handleClose = () => this.setState({ anchorEl: null });
 
   handleEdit = () => {
-    this.setState({ openEditPost: true });
+    this.setState({ openEditComment: true });
   };
 
   handleDelete = () => {
-    this.setState({ openDeletePost: true });
+    this.setState({ openDeleteComment: true });
   };
 
-  handleUpdateSuccess = (post) => {
+  handleUpdateSuccess = (comment) => {
     this.setState((state, props) => {
-      props.onUpdate(post);
+      props.onUpdate(comment);
       return {
         anchorEl: null,
-        openEditPost: false
+        openEditComment: false
       };
     });
   };
@@ -45,20 +45,20 @@ class PostActions extends React.Component {
       props.onDelete();
       return {
         anchorEl: null,
-        openDeletePost: false
+        openDeleteComment: false
       };
     });
   };
 
   handleCancel = () => this.setState({
     anchorEl: null,
-    openEditPost: false,
-    openDeletePost: false
+    openEditComment: false,
+    openDeleteComment: false
   });
 
   render() {
-    const { anchorEl, openEditPost, openDeletePost } = this.state;
-    const { post } = this.props;
+    const { anchorEl, openEditComment, openDeleteComment } = this.state;
+    const { comment } = this.props;
 
     return (
       <div>
@@ -83,9 +83,9 @@ class PostActions extends React.Component {
               Edit
             </Typography>
           </MenuItem>
-          <EditPost
-            post={ post }
-            open={ openEditPost }
+          <EditComment
+            comment={ comment }
+            open={ openEditComment }
             onSuccess={ this.handleUpdateSuccess }
             onCancel={ this.handleCancel }
           />
@@ -96,8 +96,8 @@ class PostActions extends React.Component {
               Delete
             </Typography>
           </MenuItem>
-          <DeletePost
-            open={ openDeletePost }
+          <DeleteComment
+            open={ openDeleteComment }
             onDelete={ this.handleDeleteSuccess }
             onCancel={ this.handleCancel }
           />
@@ -107,10 +107,10 @@ class PostActions extends React.Component {
   }
 }
 
-PostActions.propTypes = {
-  post: PropTypes.object.isRequired,
+CommentActions.propTypes = {
+  comment: PropTypes.object.isRequired,
   onDelete: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired
 };
 
-export default PostActions;
+export default CommentActions;

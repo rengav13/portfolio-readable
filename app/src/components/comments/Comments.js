@@ -1,51 +1,70 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/core/styles';
 
-import Collapse from '@material-ui/core/Collapse';
+import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import AddComment from './add/AddComment';
+import ListComments from './ListComments';
+import { addComment, fetchCommentsByPost } from "../../actions/comments";
+import CommentCounter from "./CommentCounter";
 
-const styles = (theme) => ({
-  commentList: {
-    backgroundColor: theme.palette.background.paper
+const style = theme => ({
+  root: {
+    ...theme.mixins.gutters(),
+    padding: theme.spacing.unit * 2,
+    margin: theme.spacing.unit * 2
+  },
+  postInfo: {
+    display: 'flex',
+    displayDirections: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  addComment: {
+    marginBottom: theme.spacing.unit * 1
   }
 });
 
-const Comments = ({ classes, collapse }) => {
+class Comments extends React.Component {
 
-  return (
-    <Collapse in={ collapse }>
-      <Divider/>
-      <List component='nav' className={ classes.commentList }>
-        <ListItem>
-          <ListItemText primary='kjdshfjkshdfjkhsfjdkhksdhfkjsdhfkjs jdfsnksjdhj hkjdsh kjsd'/>
-        </ListItem>
+  componentDidMount() {
+    const { post } = this.props;
+    this.props.dispatch(fetchCommentsByPost(post.id));
+  }
+
+  handleAddComment = comment => {
+    const { post } = this.props;
+    this.props.dispatch(addComment(post, comment));
+  };
+
+  render() {
+    const { classes, comments } = this.props;
+
+    return (
+      <Paper className={ classes.root } elevation={ 1 }>
+        <div className={ classes.addComment }>
+          <AddComment onAdd={ this.handleAddComment }/>
+        </div>
+
         <Divider/>
-        <ListItem>
-          <ListItemText primary='kjdshfjkshdfjkhsfjdkhksdhfkjsdhfkjs jdfsnksjdhj hkjdsh kjsd'/>
-        </ListItem>
-        <Divider/>
-        <ListItem>
-          <ListItemText primary='kjdshfjkshdfjkhsfjdkhksdhfkjsdhfkjs jdfsnksjdhj hkjdsh kjsd'/>
-        </ListItem>
-        <Divider/>
-        <ListItem>
-          <ListItemText primary='kjdshfjkshdfjkhsfjdkhksdhfkjsdhfkjs jdfsnksjdhj hkjdsh kjsd'/>
-        </ListItem>
-        <Divider/>
-      </List>
-    </Collapse>
-  );
-};
+
+        <br/>
+        <CommentCounter count={ comments.length }/>
+
+        <ListComments comments={ comments }/>
+      </Paper>
+    );
+  }
+}
+
+const mapStateToProps = ({ comments }) => ({ comments });
 
 Comments.propTypes = {
   classes: PropTypes.object.isRequired,
-  collapse: PropTypes.bool.isRequired,
-  postId: PropTypes.string.isRequired
+  post: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Comments);
+export default connect(mapStateToProps)(withStyles(style)(Comments));
