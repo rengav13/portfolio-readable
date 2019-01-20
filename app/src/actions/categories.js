@@ -1,6 +1,5 @@
 import { fetchAll } from "../services/category";
-
-export const FETCH_CATEGORIES_SUCCESS = 'FETCH_CATEGORIES_SUCCESS';
+import { FETCH_CATEGORIES_SUCCESS } from './types';
 
 export const fetchCategories = () => dispatch => {
   fetchAll()

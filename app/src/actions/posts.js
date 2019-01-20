@@ -1,13 +1,15 @@
 import { add, disable, edit, fetchAll, fetchById, vote } from '../services/post';
 
-export const FETCH_POST_SUCCESS = 'FETCH_POST_SUCCESS';
-export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
-export const VOTE_POST_SUCCESS = 'VOTE_POST_SUCCESS';
-export const FILTER_POSTS_SUCCESS = 'FILTER_POSTS_SUCCESS';
-export const SORT_POSTS = 'SORT_POSTS';
-export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
-export const EDIT_POST_SUCCESS = 'EDIT_POST_SUCCESS';
-export const DISABLE_POST_SUCCESS = 'DISABLE_POST_SUCCESS';
+import {
+  ADD_POST_SUCCESS,
+  DISABLE_POST_SUCCESS,
+  EDIT_POST_SUCCESS,
+  FETCH_POST_SUCCESS,
+  FETCH_POSTS_SUCCESS,
+  FILTER_POSTS_SUCCESS,
+  SORT_POSTS,
+  VOTE_POST_SUCCESS
+} from './types';
 
 export const fetchPostById = id => dispatch => {
   fetchById(id)

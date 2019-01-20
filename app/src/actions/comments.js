@@ -1,10 +1,12 @@
 import { add, disable, edit, fetchAllByPost, vote } from "../services/comment";
 
-export const FETCH_COMMENTS_BY_POST_SUCCESS = 'FETCH_COMMENTS_BY_POST_SUCCESS';
-export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
-export const VOTE_COMMENT_SUCCESS = 'VOTE_COMMENT_SUCCESS';
-export const EDIT_COMMENT_SUCCESS = 'EDIT_COMMENT_SUCCESS';
-export const DISABLE_COMMENT_SUCCESS = 'DISABLE_COMMENT_SUCCESS';
+import {
+  ADD_COMMENT_SUCCESS,
+  DISABLE_COMMENT_SUCCESS,
+  EDIT_COMMENT_SUCCESS,
+  FETCH_COMMENTS_BY_POST_SUCCESS,
+  VOTE_COMMENT_SUCCESS
+} from './types';
 
 export const fetchCommentsByPost = postId => dispatch => {
   fetchAllByPost(postId)
