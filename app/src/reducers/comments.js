@@ -4,7 +4,8 @@ import {
   EDIT_COMMENT_SUCCESS,
   FETCH_COMMENTS_BY_POST_SUCCESS,
   VOTE_COMMENT_SUCCESS
-} from "../actions/comments";
+} from "../actions/types";
+
 
 const comments = (comments = [], action) => {
   switch (action.type) {

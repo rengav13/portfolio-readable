@@ -10,50 +10,35 @@ import {
 
 export const fetchCommentsByPost = postId => dispatch => {
   fetchAllByPost(postId)
-    .then(comments => dispatch(fetchCommentsByPostSuccess(comments)));
+    .then(comments => {
+      dispatch({ type: FETCH_COMMENTS_BY_POST_SUCCESS, comments });
+    });
 };
-
-export const fetchCommentsByPostSuccess = comments => ({
-  type: FETCH_COMMENTS_BY_POST_SUCCESS,
-  comments
-});
 
 export const addComment = (post, comment) => dispatch => {
   add(post, comment)
-    .then(comment => dispatch(addCommentSuccess(comment)));
+    .then(comment => {
+      dispatch({ type: ADD_COMMENT_SUCCESS, comment });
+    });
 };
-
-export const addCommentSuccess = comment => ({
-  type: ADD_COMMENT_SUCCESS,
-  comment
-});
 
 export const voteComment = (id, option) => dispatch => {
   vote(id, option)
-    .then(comment => dispatch(voteComentSuccess(comment)));
+    .then(comment => {
+      dispatch({ type: VOTE_COMMENT_SUCCESS, comment });
+    });
 };
-
-export const voteComentSuccess = comment => ({
-  type: VOTE_COMMENT_SUCCESS,
-  comment
-});
 
 export const editComment = comment => dispatch => {
   edit(comment)
-    .then(comment => dispatch(editCommentSuccess(comment)));
+    .then(comment => {
+      dispatch({ type: EDIT_COMMENT_SUCCESS, comment });
+    });
 };
-
-export const editCommentSuccess = comment => ({
-  type: EDIT_COMMENT_SUCCESS,
-  comment
-});
 
 export const disableComment = id => dispatch => {
   disable(id)
-    .then(comment => dispatch(disableCommentSuccess(comment)));
+    .then(comment => {
+      dispatch({ type: DISABLE_COMMENT_SUCCESS, comment });
+    });
 };
-
-export const disableCommentSuccess = comment => ({
-  type: DISABLE_COMMENT_SUCCESS,
-  comment
-});

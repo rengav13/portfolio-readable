@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
 import { isBlank } from '../util/StringUtil';
+
 import {
   ADD_POST_SUCCESS,
   DISABLE_POST_SUCCESS,
@@ -10,7 +11,7 @@ import {
   FILTER_POSTS_SUCCESS,
   SORT_POSTS,
   VOTE_POST_SUCCESS
-} from "../actions/posts";
+} from "../actions/types";
 
 const posts = (posts = [], action) => {
   switch (action.type) {

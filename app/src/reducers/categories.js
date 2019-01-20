@@ -1,4 +1,4 @@
-import { FETCH_CATEGORIES_SUCCESS } from "../actions/categories";
+import { FETCH_CATEGORIES_SUCCESS } from "../actions/types";
 
 const categories = (categories = [], action) => {
   switch (action.type) {
