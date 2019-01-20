@@ -6,11 +6,11 @@ import './App.css';
 
 /*
   TODO:
-    - To add validation to validate form views
-    - To implement message handler (it can be implemented with axios interceptor)
     - To add a global loading, can be made with axios.interceptors
+    - To implement message handler (it can be implemented with axios interceptor)
+    - To add validation to validate form views
 
-    - To refactor modals (Edit and Delete, posts and comments)
+    - To refactor modals (Edit and Delete, posts and comments) [To add validation]
     - To refactor Post and Comment Actions
  */
 // TODO: If the post don't exist it must show the 404 Page.

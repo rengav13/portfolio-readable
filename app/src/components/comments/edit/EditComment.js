@@ -6,7 +6,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import TextField from '@material-ui/core/TextField';
 import DefaultDialogActions from "../../commom/DefaultDialogActions";
-import UserInfo from "../../commom/UserInfo";
+import Information from "../../commom/Information";
 
 class EditComment extends React.Component {
 
@@ -53,7 +53,7 @@ class EditComment extends React.Component {
             onChange={ this.handleChange }
             fullWidth
           />
-          <UserInfo
+          <Information
             author={ comment.author }
             timestamp={ comment.timestamp }
           />

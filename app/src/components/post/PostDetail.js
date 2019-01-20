@@ -11,7 +11,7 @@ import Divider from '@material-ui/core/Divider';
 import Score from "../score/Score";
 
 import { disablePost, editPost, votePost } from "../../actions/posts";
-import UserInfo from "../commom/UserInfo";
+import Information from "../commom/Information";
 import PostActions from "./PostActions";
 
 const style = theme => ({
@@ -73,9 +73,10 @@ class PostDetail extends React.Component {
         <br/>
         <Divider/>
         <div className={ classes.postInfo }>
-          <UserInfo
+          <Information
             author={ post.author }
             timestamp={ post.timestamp }
+            category={ post.category }
           />
           <Score
             score={ post.voteScore }

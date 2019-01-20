@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
-import UserInfo from "../commom/UserInfo";
+import Information from "../commom/Information";
 import Score from "../score/Score";
 import { disableComment, editComment, voteComment } from "../../actions/comments";
 import CommentActions from "./CommentActions";
@@ -61,7 +61,7 @@ class Comment extends React.Component {
           />
         </div>
         <div className={ classes.commentOptions }>
-          <UserInfo
+          <Information
             author={ comment.author }
             timestamp={ comment.timestamp }
           />

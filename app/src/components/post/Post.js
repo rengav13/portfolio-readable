@@ -12,13 +12,11 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
 import Score from '../score/Score';
-import PostCategory from './PostCategory';
-import UserInfo from '../commom/UserInfo';
+import Information from '../commom/Information';
 import CommentCounter from "../comments/CommentCounter";
 
-import { editPost, votePost } from '../../actions/posts';
+import { disablePost, editPost, votePost } from '../../actions/posts';
 import PostActions from "./PostActions";
-import { disablePost } from "../../actions/posts";
 
 const styles = theme => ({
   card: {
@@ -71,12 +69,10 @@ class Post extends React.Component {
             />
           }
           title={
-            <PostCategory category={ post.category }/>
-          }
-          subheader={
-            <UserInfo
-              timestamp={ post.timestamp }
+            <Information
               author={ post.author }
+              timestamp={ post.timestamp }
+              category={ post.category }
             />
           }
         />
