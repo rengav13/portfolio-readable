@@ -1,4 +1,8 @@
-import { add, disable, edit, fetchAll, fetchById, vote } from '../services/post';
+import { vote } from '../services/post';
+
+import { add, get, getAll, remove, update } from '../services/commom';
+
+import { POSTS_API } from '../services/api';
 
 import {
   ADD_POST_SUCCESS,
@@ -12,17 +16,13 @@ import {
 } from './types';
 
 export const fetchPostById = id => dispatch => {
-  fetchById(id)
-    .then(post => {
-      dispatch({ type: FETCH_POST_SUCCESS, post });
-    });
+  get(POSTS_API, id)
+    .then(post => dispatch({ type: FETCH_POST_SUCCESS, post }));
 };
 
 export const fetchPosts = () => dispatch => {
-  fetchAll()
-    .then(posts => {
-      dispatch({ type: FETCH_POSTS_SUCCESS, posts });
-    });
+  getAll(POSTS_API)
+    .then(posts => dispatch({ type: FETCH_POSTS_SUCCESS, posts }));
 };
 
 export const votePost = (id, option) => dispatch => {
@@ -33,28 +33,24 @@ export const votePost = (id, option) => dispatch => {
 };
 
 export const filterPosts = filters => dispatch => {
-  fetchAll()
-    .then(posts => {
-      dispatch({ type: FILTER_POSTS_SUCCESS, posts, filters });
-    });
+  getAll(POSTS_API)
+    .then(posts => dispatch({ type: FILTER_POSTS_SUCCESS, posts, filters }));
 };
 
 export const addPost = post => dispatch => {
-  add(post)
-    .then(post => {
-      dispatch({ type: ADD_POST_SUCCESS, post });
-    });
+  add(POSTS_API, post)
+    .then(post => dispatch({ type: ADD_POST_SUCCESS, post }));
 };
 
 export const editPost = post => dispatch => {
-  edit(post)
+  update(POSTS_API, post)
     .then(post => {
       dispatch({ type: EDIT_POST_SUCCESS, post });
     });
 };
 
 export const disablePost = id => dispatch => {
-  disable(id)
+  remove(POSTS_API, id)
     .then(post => {
       dispatch({ type: DISABLE_POST_SUCCESS, post });
     });

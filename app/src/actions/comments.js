@@ -1,4 +1,8 @@
-import { add, disable, edit, fetchAllByPost, vote } from "../services/comment";
+import { add, getAllByPost, vote } from "../services/comment";
+
+import { remove, update } from "../services/commom";
+
+import { COMMENTS_API } from "../services/api";
 
 import {
   ADD_COMMENT_SUCCESS,
@@ -9,7 +13,7 @@ import {
 } from './types';
 
 export const fetchCommentsByPost = postId => dispatch => {
-  fetchAllByPost(postId)
+  getAllByPost(postId)
     .then(comments => {
       dispatch({ type: FETCH_COMMENTS_BY_POST_SUCCESS, comments });
     });
@@ -30,15 +34,13 @@ export const voteComment = (id, option) => dispatch => {
 };
 
 export const editComment = comment => dispatch => {
-  edit(comment)
+  update(COMMENTS_API, comment)
     .then(comment => {
       dispatch({ type: EDIT_COMMENT_SUCCESS, comment });
     });
 };
 
 export const disableComment = id => dispatch => {
-  disable(id)
-    .then(comment => {
-      dispatch({ type: DISABLE_COMMENT_SUCCESS, comment });
-    });
+  remove(COMMENTS_API, id)
+    .then(comment => dispatch({ type: DISABLE_COMMENT_SUCCESS, comment }));
 };
