@@ -1,4 +1,6 @@
 import axios from 'axios';
+import store from '../store';
+import { showErrorMessage } from "../actions/error";
 
 export const POSTS_API = 'posts';
 export const COMMENTS_API = 'comments';
@@ -12,4 +14,13 @@ export const API = axios.create({
   }
 });
 
-API.interceptors.response.use(({ data }) => data);
+API.interceptors.response.use(onSuccess, onError);
+
+function onSuccess({ data }) {
+  return data;
+}
+
+function onError(error) {
+  store.dispatch(showErrorMessage(error.message));
+  return null;
+}

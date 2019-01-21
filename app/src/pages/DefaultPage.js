@@ -95,7 +95,7 @@ class DefaultPage extends Component {
 }
 
 const mapStateToProps = ({ posts }) => {
-  const filtered = posts ? posts.filter(post => !post.deleted) : [];
+  const filtered = Array.isArray(posts) ? posts.filter(post => !post.deleted) : [];
   return { posts: filtered };
 };
 
